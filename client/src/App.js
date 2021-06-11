@@ -47,7 +47,8 @@ function App() {
           <SignUp handleResponseSuccess={handleResponseSuccess} />
         )} />
 
-      <Route path='/user' render={() => <MyPage />} />
+      <Route path='/user' render={() => <MyPage userInfo={userInfo} setLogin={setLogin} 
+      token={token} setTimes={setTimes} setToken={setToken}/>} />
       <Route path='/mypage/goal' render={() => <Goal />} />
       <Route path='/timer' render={() => <Timer />} />
 

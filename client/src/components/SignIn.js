@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 
 const SignIn = () => {
-    const [id, setId] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     return (
