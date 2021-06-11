@@ -18,33 +18,20 @@ function App() {
   const [times, setTimes] = useState('')
   const history = useHistory()
 
-  const isAuthenticated = () => {
-    axios.get("https://10k/user")
-      .then((res) => {
-        setLogin(true)
-        setUserInfo(res) //서버쪽 요청해서 가져온 데이터 변경
-        history.push('/') // 마이페이지 쪽
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          setLogin(false)
-          history.push('/signin')
-        }
-      })
-  }
-  const handleResponseSuccess = () => {
-    isAuthenticated()
+  const loginHandler = (data) => {
+    setLogin(true)
+    setToken(data)
   }
 
   return (
     <div className="App">
       <Route path='/signin'
         render={() => (
-          <SignIn login={login} handleResponseSuccess={handleResponseSuccess} />
+          <SignIn login={login} loginHandler={loginHandler} />
         )} />
       <Route path='/signup'
         render={() => (
-          <SignUp handleResponseSuccess={handleResponseSuccess} />
+          <SignUp />
         )} />
 
       <Route path='/user' render={() => <MyPage userInfo={userInfo} setLogin={setLogin} 
@@ -56,7 +43,7 @@ function App() {
         path='/'
         render={() => {
           if (login) {
-            return <Redirect to='/mypage' />;
+            return <Redirect to='/user' />;
           }
           return <Redirect to='/signin' />;
         }}

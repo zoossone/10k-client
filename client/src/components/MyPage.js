@@ -19,16 +19,19 @@ const MyPage = (props) => {
         if(window.confirm("정말 로그아웃 하시겠어요?")) {
             // console.log("로그아웃됐어요")
             const res = await axios
-            .get("https://10k/signout", {
+            .get("http://theone10k.kro.kr/signout", {
                 headers: {
-                  'Authorization': props.token
-                }
+                  Authorization: `Bearar ${props.token}`,
+                  "Content-Type": "application/json"
+                },
+                withCredentials: true
               })
+            .then((res) => {
+              props.setLogin(false); // 로그아웃 상태로
+              props.setToken(''); // 토큰을 없앤다
+              useHistory.push("/signin"); // 로그인으로 리다이렉트
+            })
             .catch(e => e);
-            props.setLogin(false);
-            props.setToken('');
-            //토큰을 없애주는 로직
-            useHistory.push("/signin");
         } else {
             // console.log("ㄴ로그아웃")
             return;
@@ -43,17 +46,23 @@ const MyPage = (props) => {
         if (window.confirm("회원탈퇴를 하면 저장된 정보가 모두 삭제됩니다. 정말 회원탈퇴를 하시겠어요? :(")) {
             console.log("탈퇴 뿌잉뿌잉");
             const res = await axios
-            .delete("https://10k/user", {
+            .delete("http://theone10k.kro.kr/user", {
                 headers: {
-                  'Authorization': props.token
-                }
+                  Authorization: `Bearar ${props.token}`,
+                  "Content-Type": "application/json"
+                },
+                email: props.userInfo.email,
+                withCredentials: true
               })
+            .then((res) => {
+              props.setLogin(false); // 로그아웃 상태로
+              props.setToken(''); // 토큰을 없앤다
+              useHistory.push("/signin"); // 로그인으로 리다이렉트
+            })
             .catch(e => e);
-            props.setLogin(false);
-            props.setToken('');
-            useHistory.push("/signin");
         } else {
             console.log("탈퇴 취소!")
+            return;
         }
     };
 
