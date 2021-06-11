@@ -11,8 +11,10 @@ const MyPage = (props) => {
      * get: SignOut {Auth}-> res ****
      * post: AddGoal {email, Desc, totaltime} -> res: times
      * delete: Withdrawal -> res ****
+     * get: Mypage {Auth}-> res: UserInfo, goals(list)
      * 
      * dropdown
+     * 
      */
 
     const handleLogoutClick = async () => {
@@ -65,9 +67,6 @@ const MyPage = (props) => {
             return;
         }
     };
-
-
-    
 
     return (
         <div>
