@@ -14,7 +14,7 @@ const SignIn = (props) => {
             email: email,
             password: password
         }).then((res) => {
-            props.loginHandler(res)
+            props.loginHandler(res.accessToken) // 토큰 어떤 형식으로 받아올지
         }).catch((err) => alert("이메일과 비밀번호를 다시 확인해주세요"))
     }
 
