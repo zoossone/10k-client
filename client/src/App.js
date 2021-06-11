@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <Route path='/signin'
         render={() => (
-          <SignIn login={login} loginHandler={loginHandler} />
+          <SignIn login={login} loginHandler={loginHandler}/>
         )} />
       <Route path='/signup'
         render={() => (
