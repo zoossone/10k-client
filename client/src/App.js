@@ -15,7 +15,7 @@ function App() {
   const [login, setLogin] = useState(false)
   const [token, setToken] = useState('')
   const [userInfo, setUserInfo] = useState('')
-  const [times, setTimes] = useState('')
+  const [times, setTimes] = useState([]) // times 여러개라서 빈 배열
   const history = useHistory()
 
   const loginHandler = (data) => {
@@ -34,8 +34,8 @@ function App() {
           <SignUp />
         )} />
 
-      <Route path='/user' render={() => <MyPage userInfo={userInfo} setLogin={setLogin} 
-      token={token} setTimes={setTimes} setToken={setToken}/>} />
+      <Route path='/user' render={() => <MyPage setLogin={setLogin} token={token} setToken={setToken} userInfo={userInfo}
+      setUserInfo={setUserInfo} times={times} setTimes={setTimes} />} />
       <Route path='/mypage/goal' render={() => <Goal />} />
       <Route path='/timer' render={() => <Timer />} />
 
