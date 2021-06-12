@@ -9,6 +9,7 @@ import MyPage from './components/MyPage'
 import Timer from './components/Timer';
 
 
+
 // 클래스명은 아직 넣지말기. 협의 후 넣기.
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
   const [token, setToken] = useState('')
   const [userInfo, setUserInfo] = useState('')
   const [times, setTimes] = useState([]) // times 여러개라서 빈 배열
-  const history = useHistory()
 
   const loginHandler = (data) => {
     setLogin(true)

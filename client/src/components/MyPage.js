@@ -1,20 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
+import Select from 'react-select';
 
 const MyPage = (props) => {
-    const [goalName, setGoalName] = useState('');
+    const [newGoalName, setNewGoalName] = useState('');
     const [desc, setDesc] = useState('');
     const [totalTime, setTotalTime] = useState('');
-
+    const timeOptions = [
+        { value: 10, label: 10 },
+        { value: 100, label: 100 },
+        { value: 1000, label: 1000 },
+        { value: 10000, label: 10000 }
+      ];
+    // const goalOptions = props.times.map((el) => {
+    //     return el.goalName;
+    // });
+    const arr = [{goalName: '요리', a: 0}, {goalName: '운동', a: 0}, {goalName: '개발', a: 0}, {goalName: '스토킹', a: 0}] 
+    const goalOptions = arr.map((el) => {
+        return { value: el.goalName, label: el.goalName};
+    });
+    
     /**
      * get: SignOut {Auth}-> res ****
      * delete: Withdrawal -> res ****
      * get: Mypage {Auth}-> res: UserInfo, goals(list)  ****
      * post: My Goal {Auth, timesId} -> res: GoalName, Times ????????????????????????????????????????????????????
-     * post: AddGoal {email, Desc, totaltime} -> res: times
+     * post: AddGoal {email, Desc, totaltime} -> res: times ****
      * 
-     * dropdown
+     * select -> dropdown
      */
 
     // mypage 정보요청
@@ -56,6 +70,8 @@ const MyPage = (props) => {
     //     })
     // };
 
+    //props.times의 값을 절대 변경해서는 안되고 사용만 해야한다
+    // 근데 여기서는 요청을 안했다. 기억해둘것
     const showGoalList = () => {
         //goals의 리스트를 조회한 후 뿌려준다.
         const goals = props.times;
@@ -134,7 +150,7 @@ const MyPage = (props) => {
                     Authorization: `Bearar ${props.token}`,
                     "Content-Type": "application/json"
                 },
-                goalName: goalName,
+                goalName: newGoalName,
                 description: desc,
                 email: props.userInfo.email,
                 totalTime: totalTime,
@@ -149,6 +165,14 @@ const MyPage = (props) => {
             .catch(e => e);
     };
 
+    const handleTimeChange = (totalTime) => {
+        setTotalTime(totalTime);
+    };
+
+    const handleSelectGoal = (newGoalName) => {
+        setNewGoalName(newGoalName);
+    };
+    
     return (
         <div>
             <button onClick={handleLogoutClick}>로그아웃</button>
@@ -157,9 +181,9 @@ const MyPage = (props) => {
                 <span>{props.userInfo.name}님의 목표 달성을 기원합니다!!</span>
             </div>
             <div>
-                <span>dropdown goal name</span>
+                <Select value={newGoalName} onChange={handleSelectGoal} options={goalOptions}></Select>
                 <textarea placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
-                <span>dropdown total time</span>
+                <Select value={totalTime} onChange={handleTimeChange} options={timeOptions}></Select>
                 <button onClick={handleAddGoalClick}>목표 설정</button>
             </div>
             {showGoalList()}
