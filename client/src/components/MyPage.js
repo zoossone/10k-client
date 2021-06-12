@@ -20,6 +20,7 @@ const MyPage = (props) => {
     const goalOptions = arr.map((el) => {
         return { value: el.goalName, label: el.goalName};
     });
+    const history = useHistory();
     
     /**
      * get: SignOut {Auth}-> res ****
@@ -85,7 +86,8 @@ const MyPage = (props) => {
                     goalName: el.goalName,
                     accTime: el.accTime,
                     totalTime: el.totalTime,
-                    description: el.description
+                    description: el.description,
+                    token: props.token
                 }
             }}>{el}</Link> </li>
         });
@@ -106,7 +108,7 @@ const MyPage = (props) => {
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
                     props.setToken(''); // 토큰을 없앤다
-                    useHistory.push("/signin"); // 로그인으로 리다이렉트
+                    history.push("/signin"); // 로그인으로 리다이렉트
                 })
                 .catch(e => e);
         } else {
@@ -130,7 +132,7 @@ const MyPage = (props) => {
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
                     props.setToken(''); // 토큰을 없앤다
-                    useHistory.push("/signin"); // 로그인으로 리다이렉트
+                    history.push("/signin"); // 로그인으로 리다이렉트
                 })
                 .catch(e => e);
         } else {
