@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react';
 
 const Timer = (props) => {
     const [time, setTime] = useState(0)
-    const [accTime, setAccTime] = useState(0)
+    const [curAccTime, setCurAccTime] = useState(props.accTime)
     const [isRunning, setIsRunning] = useState(false)
     // math함수써서 시분초로 나타내기
 
-    const accTime = () => {
+    const saveTime = () => {
         // console.log(typeof(String(time))) 여긴 그냥 시간 축적시간 ㄴㄴ 요청키값 변경예정.
         axios.post("http://10k/goals/time", {
+            token: props.token,
+            timesId: props.timesId,
+            accTime: props.accTime,
             time: String(time)
         }, {
             headers: {
@@ -18,7 +21,7 @@ const Timer = (props) => {
             },
             withCredentials: true
         }).then((res) => {
-            setAccTime(res.accTime)
+            setCurAccTime(res.accTime)
         })
     }
 
@@ -54,13 +57,13 @@ const Timer = (props) => {
                 <button onClick={() => setIsRunning(false)}>Stop</button>
                 <button onClick={() => setIsRunning(true)}>Resume</button>
                 <button onClick={() => setTime(0)}>Reset</button>
-                <button onClick={accTime}>Save</button>
+                <button onClick={saveTime}>Save</button>
             </div>
             <div>
-                <input placeholder="축적시간 표시할곳"></input>
+                <span>{curAccTime}</span>
             </div>
             <div>
-                <input placeholder="총시간 표시할곳"></input>
+            <span>{props.totalTime}</span>
             </div>
         </div>
     );
