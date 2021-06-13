@@ -9,8 +9,6 @@ const Goal = (props) => {
     const history = useHistory();
     const takeData = useLocation();
     const data = takeData.state;
-
-    console.log(data);
     
     const handlegoToMyPageClick = () => {
         history.push('/user');
@@ -18,7 +16,6 @@ const Goal = (props) => {
 
     const handleReomveGoalClick = () => {
         if (window.confirm("힘들게 쌓아놓은 목표를 이렇게 쉽게 포기하시겠습까?")) {
-            console.log("패배자샊");
             axios
             .delete("http://theone10k.kro.kr/goals", {
                 headers: {
@@ -30,7 +27,6 @@ const Goal = (props) => {
             })
             .catch(e => alert(e));
         } else {
-            console.log("잘 생각했어요 가서 기수이동 하세요")
             return ;
         }
     };
@@ -45,8 +41,6 @@ const Goal = (props) => {
 
     const handleDescChangeClick = () => {
         if (window.confirm("진짜 변경하시겠습니까?")) {
-            console.log("변경");
-            console.log(descM);
             axios
             .put("http://theone10k.kro.kr/goals", {
                 headers: {
@@ -59,7 +53,6 @@ const Goal = (props) => {
             })
             .catch(e => alert(e));
         } else {
-            console.log("변경 안됨")
             return ;
         }
     };

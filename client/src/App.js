@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState } from 'react'
-import { Route, useHistory, Redirect } from "react-router-dom"
-import axios from 'axios'
+import { Route, Redirect } from "react-router-dom"
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn'
 import Goal from './components/Goal'
@@ -15,8 +14,8 @@ import Timer from './components/Timer';
 function App() {
   const [login, setLogin] = useState(false)
   const [token, setToken] = useState('')
-  const [userInfo, setUserInfo] = useState('')
-  const [times, setTimes] = useState([]) // times 여러개라서 빈 배열
+  const [userInfo, setUserInfo] = useState({})
+  const [times, setTimes] = useState([]) // times 여러개라서 빈 배열 골(개발, 요리 이런거..)
 
   const loginHandler = (data) => {
     setLogin(true)
@@ -39,7 +38,7 @@ function App() {
       <Route path='/mypage/goal' render={() => <Goal />} />
       <Route path='/timer' render={() => <Timer />} />
 
-      {/* <Route
+      <Route
         path='/'
         render={() => {
           if (login) {
@@ -47,7 +46,7 @@ function App() {
           }
           return <Redirect to='/signin' />;
         }}
-      /> */}
+      />
     </div>
   );
 }
