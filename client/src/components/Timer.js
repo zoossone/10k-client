@@ -10,9 +10,7 @@ const Timer = (props) => {
     const saveTime = () => {
         // console.log(typeof(String(time))) 여긴 그냥 시간 축적시간 ㄴㄴ 요청키값 변경예정.
         axios.post("http://10k/goals/time", {
-            token: props.token,
             timesId: props.timesId,
-            accTime: props.accTime,
             time: String(time)
         }, {
             headers: {
@@ -50,7 +48,6 @@ const Timer = (props) => {
                 <span>{("0" + Math.floor(time / 3600)).slice(-2)}:</span>
                 <span>{("0" + Math.floor(time / 60) % 60).slice(-2)}:</span>
                 <span>{("0" + (time) % 60).slice(-2)}</span> 
-                {/* 문자열 slice로 자르자잉 */}
             </div>
             <div>
                 <button onClick={() => setIsRunning(true)}>Start</button>
