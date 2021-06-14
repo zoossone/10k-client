@@ -38,7 +38,7 @@ function App() {
       <Route path='/mypage/goal' render={() => <Goal />} />
       <Route path='/timer' render={() => <Timer />} />
 
-      <Route
+      {/* <Route
         path='/'
         render={() => {
           if (login) {
@@ -46,7 +46,7 @@ function App() {
           }
           return <Redirect to='/signin' />;
         }}
-      />
+      /> */}
     </div>
   );
 }
