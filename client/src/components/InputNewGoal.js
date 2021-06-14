@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import { useHistory } from 'react-router';
 
 function InputNewGoal(props) {
 
     const [newGoalName, setNewGoalName] = useState('');
     const [desc, setDesc] = useState('');
     const [totalTime, setTotalTime] = useState('');
+    const history = useHistory()
     console.log(props)
 
     const timeOptions = [
@@ -74,6 +76,7 @@ function InputNewGoal(props) {
                     newTimes.push(res);
                     props.setTimes(newTimes);
                     props.setNewGoalList(res) // 다시 렌더링을 하기 위해서
+                    // return history.push('/user')
                 })
                 .catch(e => e);
         }
