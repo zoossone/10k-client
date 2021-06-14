@@ -1,42 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import Select from 'react-select';
+// import Select from 'react-select';
+import InputNewGoal from './InputNewGoal';
 
 const MyPage = (props) => {
-    const [newGoalName, setNewGoalName] = useState('');
-    const [desc, setDesc] = useState('');
-    const [totalTime, setTotalTime] = useState('');
+
     const [newGoalList, setNewGoalList] = useState('');
-    // const history = useHistory();
-    const timeOptions = [
-        { value: 10, label: 10 },
-        { value: 100, label: 100 },
-        { value: 1000, label: 1000 },
-        { value: 10000, label: 10000 }
-      ];
-    const goalOptions = props.times.map((el) => {
-        return { value: el.goalName, label: el.goalName};
-    });
-
-    useEffect(() => {
-        console.log(newGoalList)
-    }, [newGoalList])
-
-    // const arr = [{goalName: '요리', a: 0}, {goalName: '운동', a: 0}, {goalName: '개발', a: 0}, {goalName: '스토킹', a: 0}] 
-    // const goalOptions = arr.map((el) => {
-    //     return { value: el.goalName, label: el.goalName};
-    // });
-    
-    /**
-     * get: SignOut {Auth}-> res ****
-     * delete: Withdrawal -> res ****
-     * get: Mypage {Auth}-> res: UserInfo, goals(list)  ****
-     * post: My Goal {Auth, timesId} -> res: GoalName, Times ????????????????????????????????????????????????????
-     * post: AddGoal {email, Desc, totaltime} -> res: times ****
-     * 
-     * select -> dropdown
-     */
 
     // mypage 정보요청
     axios
@@ -63,8 +33,34 @@ const MyPage = (props) => {
     const showGoalList = () => {
         //goals의 리스트를 조회한 후 뿌려준다.
         const goals = props.times;
-        // const arr = [1, 2, 3, 4, 5];
-        const list = goals.map((el) => {
+        const arr = [
+            {goalName: '요리',
+            accTime: 0,
+            description: '요리 잘하자',
+            totalTime: 10
+        },
+            {goalName: '운동',
+            accTime: 0,
+            description: '운동 잘하자',
+            totalTime: 9
+        },
+            {goalName: '취미',
+            accTime: 0,
+            description: '취미 잘하자',
+            totalTime: 8
+        },
+            {goalName: '개발',
+            accTime: 0,
+            description: '개발 잘하지',
+            totalTime: 7
+        },
+            {goalName: '공부',
+            accTime: 0,
+            description: '공부 잘하자',
+            totalTime: 6
+        }
+        ];
+        const list = arr.map((el) => {
             return <li> <Link to={{ // totaltime을 추가필요
                 pathname: "/mypage/goal",
                 state: {
@@ -122,41 +118,6 @@ const MyPage = (props) => {
             return;
         }
     };
-
-    const inputDesc = (e) => {
-        setDesc(e.target.value);
-    };
-
-    const handleAddGoalClick = () => {
-        axios
-            .post("http://theone10k.kro.kr/goals", {
-                headers: {
-                    Authorization: `Bearar ${props.token}`,
-                    "Content-Type": "application/json"
-                },
-                goalName: newGoalName,
-                description: desc,
-                email: props.userInfo.email,
-                totalTime: totalTime,
-                accTime: '0'
-            })
-            .then((res) => {
-                const newTimes = [...props.times];
-                newTimes.push(res);
-                props.setTimes(newTimes);
-                // showGoalList();
-                setNewGoalList(res)
-            })
-            .catch(e => e);
-    };
-
-    const handleTimeChange = (totalTime) => {
-        setTotalTime(totalTime);
-    };
-
-    const handleSelectGoal = (newGoalName) => {
-        setNewGoalName(newGoalName);
-    };
     
     return (
         <div>
@@ -165,12 +126,7 @@ const MyPage = (props) => {
             <div>
                 <span>{props.userInfo.name}님의 목표 달성을 기원합니다!!</span>
             </div>
-            <div>
-                <Select value={newGoalName} onChange={handleSelectGoal} options={goalOptions}></Select>
-                <textarea placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
-                <Select value={totalTime} onChange={handleTimeChange} options={timeOptions}></Select>
-                <button onClick={handleAddGoalClick}>목표 설정</button>
-            </div>
+            <InputNewGoal userInfo={props.userInfo} times={props.times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}/>
             {showGoalList()}
         </div>
     );
