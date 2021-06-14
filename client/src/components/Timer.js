@@ -9,8 +9,8 @@ const Timer = (props) => {
 
     const saveTime = () => {
         // console.log(typeof(String(time))) 여긴 그냥 시간 축적시간 ㄴㄴ 요청키값 변경예정.
-        axios.post("http://10k/goals/time", {
-            timesId: props.timesId,
+        axios.post("http://localhost:4000/goals/time", {
+            goalName: props.goalName,
             time: String(time)
         }, {
             headers: {

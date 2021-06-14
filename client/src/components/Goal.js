@@ -8,8 +8,8 @@ import ChangeDescription from './ChangeDescription';
 const Goal = (props) => {
     const takeData = useLocation();
     const data = takeData.state;
+    console.log(data)
 
-    const [curDesc, setCurDesc] = useState(data.description);
     const history = useHistory();
     
     const handlegoToMyPageClick = () => {
@@ -19,13 +19,19 @@ const Goal = (props) => {
     const handleReomveGoalClick = () => {
         if (window.confirm("힘들게 쌓아놓은 목표를 이렇게 쉽게 포기하시겠습까?")) {
             axios
-            .delete("http://theone10k.kro.kr/goals", {
+            .delete("http://localhost:4000/goals", {
                 headers: {
-                    Authorization: `Bearar ${data.token}`,
+                    authorization: `Bearar ${data.token}`,
                     "Content-Type": "application/json"
                 },
                 withCredentials: true,
-                timesId: data.timesId
+                data:{
+                    goalName: data.goalName
+                }
+            }
+            )
+            .then(() => {
+                history.push('/user');
             })
             .catch(e => alert(e));
         } else {
@@ -38,9 +44,8 @@ const Goal = (props) => {
             <button onClick={handlegoToMyPageClick}>MyPage</button>
             <button onClick={handleReomveGoalClick}>목표 지우기</button>
             <h2>{data.goalName}</h2>
-            <p>{curDesc}</p>
-            <ChangeDescription token={data.token} setCurDesc={setCurDesc} timesId={data.timesId}/>
-            <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime}/>
+            <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
+            <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
         </div>
     );
 };

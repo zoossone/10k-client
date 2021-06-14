@@ -15,12 +15,12 @@ const SignUp = (props) => {
         } else if(password !== passwordCheck) {
             return alert('비밀번호 재확인 부탁드립니다.')
         }
-        axios.post("https://10k/signup", {
+        axios.post("http://localhost:4000/signup", {
             email: email,
             name: name,
             password: password
         }).then(() => history.push('/signin'))
-        .catch(() => alert("이미 사용자가 있는 이메일 주소입니다."))
+        .catch((e) => alert(e))
     }
 
     return (
