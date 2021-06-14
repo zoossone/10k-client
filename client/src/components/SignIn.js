@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 
 const SignIn = (props) => {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -10,12 +11,15 @@ const SignIn = (props) => {
         if (!email || !password) {
             return alert('이메일과 비밀번호를 다 기입해주세요')
         }
-        axios.post("https://10k/signin", {
+
+        axios.post("http://localhost:4000/signin", {
             email: email,
             password: password
         }).then((res) => {
-            props.loginHandler(res.accessToken) // 토큰 어떤 형식으로 받아올지
-        }).catch((err) => alert("이메일과 비밀번호를 다시 확인해주세요"))
+            props.setToken(res.data.accessToken)
+            props.setLogin(true)
+        })
+        .catch((err) => alert(err))
     }
 
     return (
