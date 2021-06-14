@@ -19,7 +19,9 @@ const SignUp = (props) => {
             email: email,
             name: name,
             password: password
-        }).then(() => history.push('/signin'))
+        }).then(() => {
+            alert('회원가입이 완료되었습니다!!')
+            history.push('/signin')})
         .catch((e) => alert(e))
     }
 

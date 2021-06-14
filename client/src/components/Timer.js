@@ -19,7 +19,9 @@ const Timer = (props) => {
             },
             withCredentials: true
         }).then((res) => {
-            setCurAccTime(res.accTime)
+            console.log(res);
+            setCurAccTime(res.data.accTime)
+            setTime(0)
         })
     }
 
@@ -57,10 +59,11 @@ const Timer = (props) => {
                 <button onClick={saveTime}>Save</button>
             </div>
             <div>
-                <span>{curAccTime}</span>
+                <span>누적시간 : {curAccTime}</span>
             </div>
             <div>
-            <span>{props.totalTime}</span>
+            <span>목표시간 : {props.totalTime/3600}시간</span>
+            <div>달성률 : {(curAccTime/props.totalTime*100).toFixed(2)}% 입니다.</div>
             </div>
         </div>
     );
