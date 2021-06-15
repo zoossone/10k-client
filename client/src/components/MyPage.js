@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 // import Select from 'react-select';
 import InputNewGoal from './InputNewGoal';
+import '../css/MyPage.css'
 
 const MyPage = (props) => {
 
@@ -100,11 +101,12 @@ const MyPage = (props) => {
 
     return (
         <div id="mypage_container">
-            {isLoading ?
-            <div className="loading">로딩 중...</div> :
+            {/* {isLoading ?
+            <div className="loading">로딩 중...</div> : */}
             <div className="mypage_div">
+                <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
             <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
-            <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
+            <hr/>
             <div className="mypage_div">
                 <h1 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h1>
             </div>
@@ -112,7 +114,7 @@ const MyPage = (props) => {
                 token={props.token} setTimes={setTimes}/>
             {showGoalList()}  
             </div>
-        }
+        {/* } */}
         </div>
     );
 };

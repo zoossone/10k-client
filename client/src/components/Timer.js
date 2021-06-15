@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import '../css/Timer.css'
 
 const Timer = (props) => {
     const [time, setTime] = useState(0)
@@ -52,11 +53,11 @@ const Timer = (props) => {
                 <span>{("0" + (time) % 60).slice(-2)}</span> 
             </div>
             <div className="timer_div">
-                <button className="button_form" onClick={() => setIsRunning(true)}>Start</button>
-                <button className="button_form" onClick={() => setIsRunning(false)}>Stop</button>
-                <button className="button_form" onClick={() => setIsRunning(true)}>Resume</button>
-                <button className="button_form" onClick={() => setTime(0)}>Reset</button>
-                <button className="button_form" onClick={saveTime}>Save</button>
+                <button className="button_form1" onClick={() => setIsRunning(true)}>Start</button>
+                <button className="button_form2" onClick={() => setIsRunning(false)}>Stop</button>
+                <button className="button_form3" onClick={() => setIsRunning(true)}>Resume</button>
+                <button className="button_form4" onClick={() => setTime(0)}>Reset</button>
+                <button className="button_form5" onClick={saveTime}>Save</button>
             </div>
             <div className="timer_div">
                 <span className="cur_title">누적시간 : {curAccTime}</span>
