@@ -1,4 +1,5 @@
 .input_button_form {
+    float: right;
     margin: 2px;
     border: 1px solid skyblue;
     background-color: white;
@@ -14,4 +15,6 @@
     height: 3em;
     width: 400px;
     resize: none;
+    border-top-left-radius: 15%;
+    border-bottom-right-radius: 15%;
 }

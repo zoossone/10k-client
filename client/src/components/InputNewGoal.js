@@ -13,20 +13,20 @@ function InputNewGoal(props) {
     console.log(props)
 
     const timeOptions = [
-        { value: 36000, label: '10 hours', color:"red"},
-        { value: 360000, label: '100 hours' },
-        { value: 3600000, label: '1000 hours' },
-        { value: 36000000, label: '10K hours' }
+        { value: 36000, label: '10 hours', color:"orange"},
+        { value: 360000, label: '100 hours', color: "skyblue" },
+        { value: 3600000, label: '1000 hours', color: "orange" },
+        { value: 36000000, label: '10K hours', color: "skyblue" }
       ];
 
 
     const goalOptions = [
-        { value: '개발', label: '개발', color: "blue" },
-        { value: '수영', label: '수영', color: "#c19c00" },
-        { value: '마라톤', label: '마라톤' },
-        { value: '헬스', label: '헬스' },
-        { value: '그림', label: '그림' },
-        { value: '게임', label: '게임' },
+        { value: '개발', label: '개발🧑‍💻', color: "orange" },
+        { value: '수영', label: '수영🏊‍♂️', color: "skyblue" },
+        { value: '마라톤', label: '마라톤🏃‍♂️', color: "green" },
+        { value: '헬스', label: '헬스💪', color: "skyblue" },
+        { value: '그림', label: '그림🎨', color: "orange" },
+        { value: '게임', label: '게임🎮', color: "skyblue" },
       ];
 
       const customStyles = useMemo(
@@ -34,14 +34,16 @@ function InputNewGoal(props) {
             option: (provided, state) => ({
                 ...provided,
                 border: "1px dotted black",
-                color: state.data.color,
-                opacity: 0.8,
+                color: 'black',
+                backgroundColor: state.data.color,
+                // opacity: 0.8,
                 padding: 20,
               }),
           control: (provided) => ({
             ...provided,
+       
             width: 300,
-            background: "white",
+            background: "black",
             
           }),
           singleValue: (provided, state) => ({
@@ -109,7 +111,6 @@ function InputNewGoal(props) {
                 <textarea className="inputform" placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
                 <Select value={totalTime} onChange={handleTimeChange} options={timeOptions} styles={customStyles}></Select>
                 <button className="input_button_form" onClick={handleAddGoalClick}>목표 설정</button>
-                <hr/>
     </div>);
 }
 

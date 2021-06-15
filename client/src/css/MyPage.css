@@ -1,10 +1,31 @@
+* {
+    box-sizing: border-box;
+  }
+
 .App {
     text-align: center;
   }
 
-body {
+body, html {
     background: linear-gradient(#ffecd2, #fcb69f) no-repeat fixed 50% 50%/100% 100%;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
   }
+
+#mypage_container {
+    display: grid;
+    height: 100vh;
+    text-align: center;
+    grid-template-areas:
+		"header header header"
+		"   a    main    b   "
+		"   .     .      .   "
+		"footer footer footer";
+    
+}
+
+.mypage_div { grid-area: main; }
 
 .button_form {
     float: right;
@@ -14,6 +35,12 @@ body {
     color: rgb(50, 159, 203);
     border-top-left-radius: 15%;
     border-bottom-right-radius: 15%;
+}
+
+.img { 
+    grid-area: header;
+    width: 58vh;
+    height: 50vh;
 }
 
 .button_form:hover {

@@ -8,7 +8,8 @@ import '../css/Goal.css'
 
 const Goal = (props) => {
     const takeData = useLocation();
-    const data = takeData.state;
+    // const data = takeData.state;
+    const data = {goalName:'골네임'}
     console.log(data)
 
     const history = useHistory();
