@@ -85,7 +85,6 @@ const MyPage = (props) => {
                         Authorization: `Bearar ${props.token}`,
                         "Content-Type": "application/json"
                     },
-                    email: props.userInfo.email,
                     withCredentials: true
                 })
                 .then((res) => {
