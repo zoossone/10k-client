@@ -10,8 +10,6 @@ const MyPage = (props) => {
     const [userInfo, setUserInfo] = useState({})
     const [times, setTimes] = useState([]) // times 여러개라서 빈 배열 골(개발, 요리 이런거..)
     const [isLoading, setIsLoading] = useState(true)
-    console.log(props.token)
-    // mypage 정보요청
 
     useEffect(() => {
         axios
@@ -36,14 +34,13 @@ const MyPage = (props) => {
             .catch(e => e);
     }, [newGoalList])
 
-
     //props.times의 값을 절대 변경해서는 안되고 사용만 해야한다
     // 근데 여기서는 요청을 안했다. 기억해둘것
     const showGoalList = () => {
         //goals의 리스트를 조회한 후 뿌려준다.
         const goals = times;
         const list = goals.map((el, i) => {
-            return <li key={i}> <Link to={{ // totaltime을 추가필요
+            return <li className="goals" key={i}> <Link to={{ // totaltime을 추가필요
                 pathname: "/mypage/goal",
                 state: {
                     timesId: el.timesId,
@@ -55,7 +52,7 @@ const MyPage = (props) => {
                 }
             }}>{el.goalName} /{(el.acc_time / el.total_time * 100).toFixed(2)}%</Link> </li>
         });
-        return <ul>{list}</ul>
+        return <ul className="goal_list">{list}</ul>
     };
 
     const handleLogoutClick = () => {
@@ -102,14 +99,14 @@ const MyPage = (props) => {
     };
 
     return (
-        <div>
+        <div id="mypage_container">
             {isLoading ?
-            <div>로딩 중...</div> :
-            <div>
-            <button onClick={handleLogoutClick}>로그아웃</button>
-            <button onClick={handleWithdrawalClick}>회원탈퇴</button>
-            <div>
-                <span>{userInfo.name}님의 목표 달성을 기원합니다!!</span>
+            <div className="loading">로딩 중...</div> :
+            <div className="mypage_div">
+            <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
+            <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
+            <div className="mypage_div">
+                <h1 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h1>
             </div>
             <InputNewGoal userInfo={userInfo} times={times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}
                 token={props.token} setTimes={setTimes}/>

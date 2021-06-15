@@ -84,9 +84,9 @@ function InputNewGoal(props) {
 
     return (<div>
                 <Select value={newGoalName} onChange={handleSelectGoal} options={goalOptions}></Select>
-                <textarea placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
+                <textarea className="inputform" placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
                 <Select value={totalTime} onChange={handleTimeChange} options={timeOptions}></Select>
-                <button onClick={handleAddGoalClick}>목표 설정</button>
+                <button className="button_form" onClick={handleAddGoalClick}>목표 설정</button>
     </div>);
 }
 

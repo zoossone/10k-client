@@ -41,9 +41,9 @@ function ChangeDescription(props) {
     };
 
     return (<div>
-        <p>{curDesc}</p>
-        <textarea id="goalTextBox" placeholder='목표 설명을 변경하고 싶으시면 여기에 새 내용을 적으세요' onChange={makeNewDesc}></textarea>
-        <button onClick={handleDescChangeClick}>목표 설명 변경</button>
+        <h3 className="mid-title">{curDesc}</h3>
+        <textarea className="inputform" id="goalTextBox" placeholder='목표 설명을 변경하고 싶으시면 여기에 새 내용을 적으세요' onChange={makeNewDesc}></textarea>
+        <button className="button_form" onClick={handleDescChangeClick}>목표 설명 변경</button>
     </div>);
 }
 
