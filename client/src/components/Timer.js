@@ -44,26 +44,26 @@ const Timer = (props) => {
     // isRunning이 false이므로 조건문에 의해서 clearInterval함수 실행되면서 setinterval함수가 
     // 반복하고 있는걸 중지.
     return (
-        <div>
-            <span>타이머 페이지</span>
-            <div>
+        <div id="timer_container">
+            <span className="timer_title">타이머 페이지</span>
+            <div className="timer_div">
                 <span>{("0" + Math.floor(time / 3600)).slice(-2)}:</span>
                 <span>{("0" + Math.floor(time / 60) % 60).slice(-2)}:</span>
                 <span>{("0" + (time) % 60).slice(-2)}</span> 
             </div>
-            <div>
-                <button onClick={() => setIsRunning(true)}>Start</button>
-                <button onClick={() => setIsRunning(false)}>Stop</button>
-                <button onClick={() => setIsRunning(true)}>Resume</button>
-                <button onClick={() => setTime(0)}>Reset</button>
-                <button onClick={saveTime}>Save</button>
+            <div className="timer_div">
+                <button className="button_form" onClick={() => setIsRunning(true)}>Start</button>
+                <button className="button_form" onClick={() => setIsRunning(false)}>Stop</button>
+                <button className="button_form" onClick={() => setIsRunning(true)}>Resume</button>
+                <button className="button_form" onClick={() => setTime(0)}>Reset</button>
+                <button className="button_form" onClick={saveTime}>Save</button>
             </div>
-            <div>
-                <span>누적시간 : {curAccTime}</span>
+            <div className="timer_div">
+                <span className="cur_title">누적시간 : {curAccTime}</span>
             </div>
-            <div>
-            <span>목표시간 : {props.totalTime/3600}시간</span>
-            <div>달성률 : {(curAccTime/props.totalTime*100).toFixed(2)}% 입니다.</div>
+            <div className="timer_div">
+            <span className="total_title">목표시간 : {props.totalTime/3600}시간</span>
+            <div className="rate">달성률 : {(curAccTime/props.totalTime*100).toFixed(2)}% 입니다.</div>
             </div>
         </div>
     );

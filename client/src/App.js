@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <Route path='/signin'
         render={() => (
-          <SignIn setLogin={setLogin} setToken={setToken}/>
+          <SignIn setLogin={setLogin} setToken={setToken} />
         )} />
       <Route path='/signup'
         render={() => (

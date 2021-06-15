@@ -40,10 +40,10 @@ const Goal = (props) => {
     };
 
     return (
-        <div>
-            <button onClick={handlegoToMyPageClick}>MyPage</button>
-            <button onClick={handleReomveGoalClick}>목표 지우기</button>
-            <h2>{data.goalName}</h2>
+        <div id="goal_container">
+            <button className="button_form" onClick={handlegoToMyPageClick}>MyPage</button>
+            <button className="button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
+            <h1 className="goal_title">{data.goalName}</h1>
             <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
             <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
         </div>
