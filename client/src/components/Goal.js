@@ -3,6 +3,7 @@ import Timer from './Timer';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ChangeDescription from './ChangeDescription';
+import '../css/Goal.css'
 
 
 const Goal = (props) => {
@@ -41,8 +42,9 @@ const Goal = (props) => {
 
     return (
         <div id="goal_container">
-            <button className="button_form" onClick={handlegoToMyPageClick}>MyPage</button>
-            <button className="button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
+            <button className="goal_button_form" onClick={handlegoToMyPageClick}>MyPage</button>
+            <button className="goal_button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
+            <hr/>
             <h1 className="goal_title">{data.goalName}</h1>
             <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
             <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
