@@ -44,7 +44,6 @@ function InputNewGoal(props) {
             border: "2px solid pink",
             width: 300,
             background: "white",
-            
           }),
           singleValue: (provided, state) => ({
             ...provided,
@@ -100,6 +99,7 @@ function InputNewGoal(props) {
                     newTimes.push(res);
                     props.setTimes(newTimes);
                     props.setNewGoalList(res) // 다시 렌더링을 하기 위해서
+                    document.querySelector('.inputform').value = ''
                     // return history.push('/user')
                 })
                 .catch(e => e);
