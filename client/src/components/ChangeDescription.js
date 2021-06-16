@@ -12,11 +12,10 @@ function ChangeDescription(props) {
     }
 
     const handleDescChangeClick = () => {
-        console.log(props)
         if (descM.length === 0) {
             alert('변경할 내용을 입력하세요!!!')
         } else {
-            if (window.confirm("진짜 변경하시겠습니까?")) {
+            if (window.confirm("목표를 수정하시겠습니까?")) {
                 axios
                     .put("http://localhost:4000/goals", {
                         goalName: props.goalName,
@@ -24,7 +23,6 @@ function ChangeDescription(props) {
                     },
                         {
                             headers: {
-                                Authorization: `Bearar ${props.token}`,
                                 "Content-Type": "application/json"
                             },
                             withCredentials: true

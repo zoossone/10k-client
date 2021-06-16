@@ -16,8 +16,8 @@ const SignIn = (props) => {
         await axios.post("http://localhost:4000/signin", {
             email: email,
             password: password
+        }, {withCredentials: true
         }).then((res) => {
-            props.setToken(res.data.accessToken)
             props.setLogin(true)
         })
         .catch((err) => alert(err))
@@ -30,17 +30,15 @@ const SignIn = (props) => {
                 </header>
                 <img id="main_img" src='https://cdn.pixabay.com/photo/2016/08/31/22/10/bicycling-1634728_1280.png' />
             <div className="signin_div">
-                <span className="infomessage">Email</span>
-                <input className="signIn_inputform" type="email" onChange={(e) => setEmail(e.target.value)}></input>
+                <input className="signIn_inputform" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <div className="signin_div">
-                <span className="infomessage">Password</span>
-                <input className="signIn_inputform" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <input className="signIn_inputform" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
+            <button className="signIn_button_form" type="submit" onClick={handleLogin}>Login</button>
             <div className="signin_div">
                 <Link className="link" to="/signup">아이디가 없으신가요?</Link>
             </div>
-            <button className="signIn_button_form" type="submit" onClick={handleLogin}>Login</button>
         </div>
     );
 };

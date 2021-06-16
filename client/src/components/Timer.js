@@ -9,18 +9,15 @@ const Timer = (props) => {
     // math함수써서 시분초로 나타내기
 
     const saveTime = () => {
-        // console.log(typeof(String(time))) 여긴 그냥 시간 축적시간 ㄴㄴ 요청키값 변경예정.
         axios.post("http://localhost:4000/goals/time", {
             goalName: props.goalName,
             time: String(time)
         }, {
             headers: {
-                Authorization: `Bearar ${props.token}`,
                 "Content-Type": "application/json"
             },
             withCredentials: true
         }).then((res) => {
-            console.log(res);
             setCurAccTime(res.data.accTime)
             setTime(0)
         })

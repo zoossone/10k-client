@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Timer from './Timer';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -9,8 +9,6 @@ import '../css/Goal.css'
 const Goal = (props) => {
     const takeData = useLocation();
     const data = takeData.state;
-    // const data = {goalName:'골네임', description:'묘사묘사'}
-    console.log(data)
 
     const history = useHistory();
     
@@ -19,11 +17,10 @@ const Goal = (props) => {
     };
 
     const handleReomveGoalClick = () => {
-        if (window.confirm("힘들게 쌓아놓은 목표를 이렇게 쉽게 포기하시겠습까?")) {
+        if (window.confirm("힘들게 쌓인 값진 시간입니다.... 이렇게 포기하시겠어요? :(")) {
             axios
             .delete("http://localhost:4000/goals", {
                 headers: {
-                    authorization: `Bearar ${data.token}`,
                     "Content-Type": "application/json"
                 },
                 withCredentials: true,
@@ -48,8 +45,8 @@ const Goal = (props) => {
             <button className="goal_button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
             </header>
             <h1 className="goal_title">{data.goalName}</h1>
-            <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
-            <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
+            <ChangeDescription description={data.description} timesId={data.timesId} goalName={data.goalName} />
+            <Timer timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
         </div>
     );
 };
