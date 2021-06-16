@@ -12,7 +12,6 @@ function ChangeDescription(props) {
     }
 
     const handleDescChangeClick = () => {
-        console.log(props)
         if (descM.length === 0) {
             alert('변경할 내용을 입력하세요!!!')
         } else {
