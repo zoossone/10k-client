@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import InputNewGoal from './InputNewGoal';
 import '../css/MyPage.css'
 
+
 const MyPage = (props) => {
 
     const [newGoalList, setNewGoalList] = useState('');
@@ -41,7 +42,7 @@ const MyPage = (props) => {
         //goals의 리스트를 조회한 후 뿌려준다.
         const goals = times;
         const list = goals.map((el, i) => {
-            return <li className="goals" key={i}> <Link to={{ // totaltime을 추가필요
+            return <li key={i}> <Link className="goals" to={{ // totaltime을 추가필요
                 pathname: "/mypage/goal",
                 state: {
                     timesId: el.timesId,
@@ -83,7 +84,7 @@ const MyPage = (props) => {
                 .delete("http://localhost:4000/user", {
                     headers: {
                         Authorization: `Bearar ${props.token}`,
-                        "Content-Type": "application/json"
+                        // "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
@@ -99,21 +100,24 @@ const MyPage = (props) => {
     };
 
     return (
-        <div id="mypage_container">
-            {/* {isLoading ?
-            <div className="loading">로딩 중...</div> : */}
+        <div className="mypage_container">
+            {isLoading ?
+            <div className="loading">
+                <div className="dim"></div>
+                <div className="circle"></div>
+                </div> :
+            
             <div className="mypage_div">
                 <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
             <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
-            <hr/>
-            <div className="mypage_div">
-                <h1 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h1>
+            <div className="mypage_div1">
+                <h2 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h2>
             </div>
             <InputNewGoal userInfo={userInfo} times={times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}
                 token={props.token} setTimes={setTimes}/>
             {showGoalList()}  
             </div>
-        {/* } */}
+        }
         </div>
     );
 };
