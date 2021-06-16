@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-// import Select from 'react-select';
 import InputNewGoal from './InputNewGoal';
 import '../css/MyPage.css'
 
@@ -23,7 +22,6 @@ const MyPage = (props) => {
                 withCredentials: true
             })
             .then((res) => {
-                console.log(res)
                 const { name, email, timesData } = res.data;
                 setUserInfo({
                     'name': name,
@@ -70,7 +68,6 @@ const MyPage = (props) => {
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
                     props.setToken(''); // 토큰을 없앤다
-                    // history.push("/signin"); // 로그인으로 리다이렉트
                 })
                 .catch(e => e);
         } else {
@@ -84,14 +81,13 @@ const MyPage = (props) => {
                 .delete("http://localhost:4000/user", {
                     headers: {
                         Authorization: `Bearar ${props.token}`,
-                        // "Content-Type": "application/json"
+                        "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
                     props.setToken(''); // 토큰을 없앤다
-                    // history.push("/signin"); // 로그인으로 리다이렉트
                 })
                 .catch(e => e);
         } else {
@@ -102,22 +98,22 @@ const MyPage = (props) => {
     return (
         <div className="mypage_container">
             {isLoading ?
-            <div className="loading">
-                <div className="dim"></div>
-                <div className="circle"></div>
+                <div className="loading">
+                    <div className="dim"></div>
+                    <div className="circle"></div>
                 </div> :
-            
-            <div className="mypage_div">
-                <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
-            <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
-            <div className="mypage_div1">
-                <h2 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h2>
-            </div>
-            <InputNewGoal userInfo={userInfo} times={times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}
-                token={props.token} setTimes={setTimes}/>
-            {showGoalList()}  
-            </div>
-        }
+
+                <div className="mypage_div">
+                    <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
+                    <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
+                    <div className="mypage_div1">
+                        <h2 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h2>
+                    </div>
+                    <InputNewGoal userInfo={userInfo} times={times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}
+                        token={props.token} setTimes={setTimes} />
+                    {showGoalList()}
+                </div>
+            }
         </div>
     );
 };

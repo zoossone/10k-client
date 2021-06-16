@@ -48,7 +48,7 @@ const SignUp = (props) => {
                 onChange={(e) => setPasswordCheck(e.target.value)}></input>
             </div>
                 <div><button className="signUp_button_form" onClick={handleClick}>회원가입하기!</button></div>
-                <div><Link className="signUp_link" to="/signin">혹쉬 아이디가 생각나셨습니까??</Link></div>
+                <div><Link className="signUp_link" to="/signin">로그인 하러가기</Link></div>
         </div>
     );
 };

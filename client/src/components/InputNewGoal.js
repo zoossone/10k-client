@@ -1,7 +1,6 @@
 import React, {useMemo, useState} from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import { useHistory } from 'react-router';
 import '../css/InPutNewGoal.css'
 
 function InputNewGoal(props) {
@@ -9,8 +8,6 @@ function InputNewGoal(props) {
     const [newGoalName, setNewGoalName] = useState('');
     const [desc, setDesc] = useState('');
     const [totalTime, setTotalTime] = useState('');
-    const history = useHistory()
-    console.log(props)
 
     const timeOptions = [
         { value: 36000, label: '10 hours', color:"orange"},
@@ -23,10 +20,14 @@ function InputNewGoal(props) {
     const goalOptions = [
         { value: '개발', label: '개발🧑‍💻', color: "orange" },
         { value: '수영', label: '수영🏊‍♂️', color: "skyblue" },
-        { value: '마라톤', label: '마라톤🏃‍♂️', color: "green" },
+        { value: '마라톤', label: '마라톤🏃‍♂️', color: "orange" },
         { value: '헬스', label: '헬스💪', color: "skyblue" },
         { value: '그림', label: '그림🎨', color: "orange" },
         { value: '게임', label: '게임🎮', color: "skyblue" },
+        { value: '독서', label: '독서📚', color: "orange" },
+        { value: '공부', label: '공부📑', color: "skyblue" },
+        { value: '농구', label: '농구🏀', color: "orange" },
+        { value: '프로젝트', label: '프로젝트💻', color: "skyblue" },
       ];
 
       const customStyles = useMemo(
@@ -53,15 +54,6 @@ function InputNewGoal(props) {
         }),
         []
       );
-    
-    // const goalOptions = props.times.map((el) => {
-    //     return { value: el.goalName, label: el.goalName};
-    // });
-
-    // const arr = [{goalName: '요리', a: 0}, {goalName: '운동', a: 0}, {goalName: '개발', a: 0}, {goalName: '스토킹', a: 0}] 
-    // const goalOptions = arr.map((el) => {
-    //     return { value: el.goalName, label: el.goalName};
-    // });
 
     const inputDesc = (e) => {
         setDesc(e.target.value);
@@ -95,11 +87,11 @@ function InputNewGoal(props) {
                         withCredentials: true
                     })
                 .then((res) => {
-                    console.log(res)
                     const newTimes = [...props.times];
                     newTimes.push(res);
                     props.setTimes(newTimes);
                     props.setNewGoalList(res) // 다시 렌더링을 하기 위해서
+                    document.querySelector('.inputform').value = '';
                     // return history.push('/user')
                 })
                 .catch(e => e);
@@ -107,9 +99,9 @@ function InputNewGoal(props) {
     };
 
     return (<div>
-                <Select value={newGoalName} onChange={handleSelectGoal} options={goalOptions} styles={customStyles}></Select>
+                <Select placeholder={<div>목표 선택</div>} value={newGoalName} onChange={handleSelectGoal} options={goalOptions} styles={customStyles}></Select>
                 <textarea className="inputform" placeholder="목표를 위한 다짐이나 세부사항을 간단하게 적어주세요" onChange={(e) => inputDesc(e)} />
-                <Select value={totalTime} onChange={handleTimeChange} options={timeOptions} styles={customStyles}></Select>
+                <Select placeholder={<div>목표 시간 선택</div>} value={totalTime} onChange={handleTimeChange} options={timeOptions} styles={customStyles}></Select>
                 <button className="input_button_form" onClick={handleAddGoalClick}>목표 설정</button>
     </div>);
 }

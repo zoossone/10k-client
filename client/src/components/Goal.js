@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Timer from './Timer';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -9,8 +9,6 @@ import '../css/Goal.css'
 const Goal = (props) => {
     const takeData = useLocation();
     const data = takeData.state;
-    // const data = {goalName:'골네임', description:'묘사묘사'}
-    console.log(data)
 
     const history = useHistory();
     
@@ -19,7 +17,7 @@ const Goal = (props) => {
     };
 
     const handleReomveGoalClick = () => {
-        if (window.confirm("힘들게 쌓아놓은 목표를 이렇게 쉽게 포기하시겠습까?")) {
+        if (window.confirm("힘들게 쌓인 값진 시간입니다.... 이렇게 포기하시겠어요? :(")) {
             axios
             .delete("http://localhost:4000/goals", {
                 headers: {
