@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import Select from 'react-select';
 import InputNewGoal from './InputNewGoal';
 import '../css/MyPage.css'
-import imgfile from '../css/running.png'
+
 
 const MyPage = (props) => {
 
@@ -42,7 +42,7 @@ const MyPage = (props) => {
         //goals의 리스트를 조회한 후 뿌려준다.
         const goals = times;
         const list = goals.map((el, i) => {
-            return <li className="goals" key={i}> <Link to={{ // totaltime을 추가필요
+            return <li key={i}> <Link className="goals" to={{ // totaltime을 추가필요
                 pathname: "/mypage/goal",
                 state: {
                     timesId: el.timesId,
@@ -86,7 +86,6 @@ const MyPage = (props) => {
                         Authorization: `Bearar ${props.token}`,
                         // "Content-Type": "application/json"
                     },
-                    email: props.userInfo.email,
                     withCredentials: true
                 })
                 .then((res) => {
@@ -101,10 +100,13 @@ const MyPage = (props) => {
     };
 
     return (
-        <div id="mypage_container">
-            {/* {isLoading ?
-            <div className="loading">로딩 중...</div> : */}
-            <img className="img" src={imgfile}/>
+        <div className="mypage_container">
+            {isLoading ?
+            <div className="loading">
+                <div className="dim"></div>
+                <div className="circle"></div>
+                </div> :
+            
             <div className="mypage_div">
                 <button className="button_form" onClick={handleWithdrawalClick}>회원탈퇴</button>
             <button className="button_form" onClick={handleLogoutClick}>로그아웃</button>
@@ -115,7 +117,7 @@ const MyPage = (props) => {
                 token={props.token} setTimes={setTimes}/>
             {showGoalList()}  
             </div>
-        {/* } */}
+        }
         </div>
     );
 };

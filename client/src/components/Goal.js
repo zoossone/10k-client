@@ -8,8 +8,8 @@ import '../css/Goal.css'
 
 const Goal = (props) => {
     const takeData = useLocation();
-    // const data = takeData.state;
-    const data = {goalName:'골네임'}
+    const data = takeData.state;
+    // const data = {goalName:'골네임', description:'묘사묘사'}
     console.log(data)
 
     const history = useHistory();
@@ -43,9 +43,10 @@ const Goal = (props) => {
 
     return (
         <div id="goal_container">
+            <header>
             <button className="goal_button_form" onClick={handlegoToMyPageClick}>MyPage</button>
             <button className="goal_button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
-            <hr/>
+            </header>
             <h1 className="goal_title">{data.goalName}</h1>
             <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
             <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />

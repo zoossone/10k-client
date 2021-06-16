@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import '../css/SignUp.css'
 
 const SignUp = (props) => {
     const [name, setName] = useState('')
@@ -27,26 +28,27 @@ const SignUp = (props) => {
 
     return (
         <div>
-            <span><b>회원가입</b></span>
+            <header>
+                <h1 id="signUp_title">회원가입</h1>
+                </header>
             <div>
-                <input type="text" placeholder="name" 
+                <input className="signUp_inputform" type="text" placeholder="name" 
                 onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div>
-                <input type="text" placeholder="email" 
+                <input className="signUp_inputform" type="text" placeholder="email" 
                 onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <div>
-                <input type="password" placeholder="password" 
+                <input className="signUp_inputform" type="password" placeholder="password" 
                 onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             <div>
-                <input type="password" placeholder="password check"
+                <input className="signUp_inputform" type="password" placeholder="password check"
                 onChange={(e) => setPasswordCheck(e.target.value)}></input>
             </div>
-                <div><button onClick={handleClick}>회원가입하기!</button></div>
-                <hr/>
-                <div><Link to="/signin">혹쉬 아이디가 생각나셨습니까??</Link></div>
+                <div><button className="signUp_button_form" onClick={handleClick}>회원가입하기!</button></div>
+                <div><Link className="signUp_link" to="/signin">혹쉬 아이디가 생각나셨습니까??</Link></div>
         </div>
     );
 };

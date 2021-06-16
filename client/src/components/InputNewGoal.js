@@ -41,9 +41,9 @@ function InputNewGoal(props) {
               }),
           control: (provided) => ({
             ...provided,
-       
+            border: "2px solid pink",
             width: 300,
-            background: "black",
+            background: "white",
             
           }),
           singleValue: (provided, state) => ({

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import '../css/SignIn.css'
 
 const SignIn = (props) => {
 
@@ -24,18 +25,22 @@ const SignIn = (props) => {
 
     return (
         <div id="signin_container">
+            <header>
+                <h1 id="signIn_title">1만시간의 노력</h1>
+                </header>
+                <img id="main_img" src='https://cdn.pixabay.com/photo/2016/08/31/22/10/bicycling-1634728_1280.png' />
             <div className="signin_div">
-                <span className="infomessage">이메일</span>
-                <input className="inputform" type="email" onChange={(e) => setEmail(e.target.value)}></input>
+                <span className="infomessage">Email</span>
+                <input className="signIn_inputform" type="email" onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <div className="signin_div">
-                <span className="infomessage">비밀번호</span>
-                <input className="inputform" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <span className="infomessage">Password</span>
+                <input className="signIn_inputform" type="password" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             <div className="signin_div">
                 <Link className="link" to="/signup">아이디가 없으신가요?</Link>
             </div>
-            <button className="button_form" type="submit" onClick={handleLogin}>로그인</button>
+            <button className="signIn_button_form" type="submit" onClick={handleLogin}>Login</button>
         </div>
     );
 };
