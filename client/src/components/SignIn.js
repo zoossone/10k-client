@@ -16,8 +16,8 @@ const SignIn = (props) => {
         await axios.post("http://localhost:4000/signin", {
             email: email,
             password: password
+        }, {withCredentials: true
         }).then((res) => {
-            props.setToken(res.data.accessToken)
             props.setLogin(true)
         })
         .catch((err) => alert(err))

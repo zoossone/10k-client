@@ -16,7 +16,6 @@ const MyPage = (props) => {
         axios
             .get("http://localhost:4000/user", {
                 headers: {
-                    Authorization: `Bearar ${props.token}`,
                     "Content-Type": "application/json"
                 },
                 withCredentials: true
@@ -48,7 +47,6 @@ const MyPage = (props) => {
                     accTime: el.acc_time,
                     totalTime: el.total_time,
                     description: el.description,
-                    token: props.token
                 }
             }}>{el.goalName} /{(el.acc_time / el.total_time * 100).toFixed(2)}%</Link> </li>
         });
@@ -60,14 +58,12 @@ const MyPage = (props) => {
             axios
                 .get("http://localhost:4000/signout", {
                     headers: {
-                        Authorization: `Bearar ${props.token}`,
                         "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
-                    props.setToken(''); // 토큰을 없앤다
                 })
                 .catch(e => e);
         } else {
@@ -80,14 +76,12 @@ const MyPage = (props) => {
             axios
                 .delete("http://localhost:4000/user", {
                     headers: {
-                        Authorization: `Bearar ${props.token}`,
                         "Content-Type": "application/json"
                     },
                     withCredentials: true
                 })
                 .then((res) => {
                     props.setLogin(false); // 로그아웃 상태로
-                    props.setToken(''); // 토큰을 없앤다
                 })
                 .catch(e => e);
         } else {
@@ -110,7 +104,7 @@ const MyPage = (props) => {
                         <h2 className="mypage_title">{userInfo.name}님의 목표 달성을 기원합니다!!</h2>
                     </div>
                     <InputNewGoal userInfo={userInfo} times={times} newGoalList={newGoalList} setNewGoalList={setNewGoalList}
-                        token={props.token} setTimes={setTimes} />
+                         setTimes={setTimes} />
                     {showGoalList()}
                 </div>
             }

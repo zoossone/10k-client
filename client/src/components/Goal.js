@@ -21,7 +21,6 @@ const Goal = (props) => {
             axios
             .delete("http://localhost:4000/goals", {
                 headers: {
-                    authorization: `Bearar ${data.token}`,
                     "Content-Type": "application/json"
                 },
                 withCredentials: true,
@@ -46,8 +45,8 @@ const Goal = (props) => {
             <button className="goal_button_form" onClick={handleReomveGoalClick}>목표 지우기</button>
             </header>
             <h1 className="goal_title">{data.goalName}</h1>
-            <ChangeDescription description={data.description} token={data.token} timesId={data.timesId} goalName={data.goalName} />
-            <Timer token={data.token} timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
+            <ChangeDescription description={data.description} timesId={data.timesId} goalName={data.goalName} />
+            <Timer timesId={data.timesId} accTime={data.accTime} totalTime ={data.totalTime} goalName={data.goalName} />
         </div>
     );
 };

@@ -14,7 +14,6 @@ const Timer = (props) => {
             time: String(time)
         }, {
             headers: {
-                Authorization: `Bearar ${props.token}`,
                 "Content-Type": "application/json"
             },
             withCredentials: true
