@@ -14,7 +14,7 @@ const MyPage = (props) => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:4000/user", {
+            .get("http://theone10k.kro.kr/user", {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -56,7 +56,7 @@ const MyPage = (props) => {
     const handleLogoutClick = () => {
         if (window.confirm("정말 로그아웃 하시겠어요?")) {
             axios
-                .get("http://localhost:4000/signout", {
+                .get("http://theone10k.kro.kr/signout", {
                     headers: {
                         "Content-Type": "application/json"
                     },
@@ -74,7 +74,7 @@ const MyPage = (props) => {
     const handleWithdrawalClick = () => {
         if (window.confirm("회원탈퇴를 하면 저장된 정보가 모두 삭제됩니다. 정말 회원탈퇴를 하시겠어요? :(")) {
             axios
-                .delete("http://localhost:4000/user", {
+                .delete("http://theone10k.kro.kr/user", {
                     headers: {
                         "Content-Type": "application/json"
                     },

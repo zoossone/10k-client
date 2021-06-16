@@ -19,7 +19,7 @@ const Goal = (props) => {
     const handleReomveGoalClick = () => {
         if (window.confirm("힘들게 쌓인 값진 시간입니다.... 이렇게 포기하시겠어요? :(")) {
             axios
-            .delete("http://localhost:4000/goals", {
+            .delete("http://theone10k.kro.kr/goals", {
                 headers: {
                     "Content-Type": "application/json"
                 },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-import '../css/SignIn.css'
+import effort from '../Photos/effort.png'
 
 const SignIn = (props) => {
 
@@ -13,7 +13,7 @@ const SignIn = (props) => {
             return alert('이메일과 비밀번호를 다 기입해주세요')
         }
 
-        await axios.post("http://localhost:4000/signin", {
+        await axios.post("http://theone10k.kro.kr/signin", {
             email: email,
             password: password
         }, {withCredentials: true
@@ -28,7 +28,7 @@ const SignIn = (props) => {
             <header>
                 <h1 id="signIn_title">1만시간의 노력</h1>
                 </header>
-                <img id="main_img" src='https://cdn.pixabay.com/photo/2016/08/31/22/10/bicycling-1634728_1280.png' />
+                <img id="main_img" src={effort} />
             <div className="signin_div">
                 <input className="signIn_inputform" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
             </div>
